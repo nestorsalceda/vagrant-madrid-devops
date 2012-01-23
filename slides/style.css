@@ -82,6 +82,7 @@ a {
     text-decoration: none;
     padding: 0 0.1em;
     border-radius: 0.2em;
+    white-space: nowrap;
 
     -webkit-transition: 0.5s;
     -moz-transition:    0.5s;
@@ -140,11 +141,6 @@ a:hover {
     -ms-transform:     translateZ(50px);
     -o-transform:      translateZ(50px);
     transform:         translateZ(50px);
-}
-
-
-#about-me {
-	font-weight: 200;
 }
 
 /* overview step */
