@@ -1,0 +1,9 @@
+TODO
+====
+
+* Where vagrant stores uncompressed boxes?
+* Virtualbox running in background
+* SSH
+* Status command
+* Suspend - Resume commands
+* Up - Destroy commands

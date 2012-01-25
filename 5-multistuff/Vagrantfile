@@ -1,0 +1,48 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant::Config.run do |config|
+  config.vm.define :front do |front|
+    front.vm.box = "base"
+    front.vm.network :hostonly, "192.168.45.10"
+
+    front.vm.provision :chef_solo do |chef|
+      chef.data_bags_path = "../chef-repo/data_bags"
+      chef.cookbooks_path = "../chef-repo/cookbooks"
+      chef.roles_path = "../chef-repo/roles"
+
+      chef.add_recipe "nginx"
+    end
+  end
+
+  config.vm.define :back1 do |back1|
+    back1.vm.box = "base"
+    back1.vm.network :hostonly, "192.168.45.20"
+    back1.vm.share_folder "v-app", "/app", "./uber-cool-app"
+
+    back1.vm.provision :chef_solo do |chef|
+      chef.data_bags_path = "../chef-repo/data_bags"
+      chef.cookbooks_path = "../chef-repo/cookbooks"
+      chef.roles_path = "../chef-repo/roles"
+
+      chef.add_recipe "nodejs"
+      chef.add_recipe "supervisor"
+    end
+  end
+
+  config.vm.define :back2 do |back2|
+    back2.vm.box = "base"
+    back2.vm.network :hostonly, "192.168.45.21"
+    back2.vm.share_folder "v-app", "/app", "./uber-cool-app"
+
+    back2.vm.provision :chef_solo do |chef|
+      chef.data_bags_path = "../chef-repo/data_bags"
+      chef.cookbooks_path = "../chef-repo/cookbooks"
+      chef.roles_path = "../chef-repo/roles"
+
+      chef.add_recipe "nodejs"
+      chef.add_recipe "supervisor"
+    end
+  end
+
+end
